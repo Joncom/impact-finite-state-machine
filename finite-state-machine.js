@@ -1,5 +1,5 @@
 ig.module('plugins.finite-state-machine')
-.requires('impact.impact')
+.requires()
 .defines(function() {
 
   var unnamedTransitionCounter = 0;
