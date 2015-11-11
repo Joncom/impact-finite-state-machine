@@ -1,8 +1,17 @@
-# impactjs-statemachine
+# impact-finite-state-machine
 
-[![Build Status](https://travis-ci.org/drhayes/impactjs-statemachine.png)](https://travis-ci.org/drhayes/impactjs-statemachine)
+Provide a state machine implementation for use in ImpactJS games through one class, `FiniteStateMachine`.
 
-Provide a state machine implementation for use in ImpactJS games through one class, `StateMachine`.
+## Credit
+
+This is a modified version of David Hayes' [impactjs-statemachine](https://github.com/drhayes/impactjs-statemachine).
+
+## Changes
+
+- modified the class to extend from `ig.Class` for convenience reasons
+- changed the module path because I like putting these things in a `plugins` folder
+- renamed the class from `StateMachine` to `FiniteStateMachine`
+- "cleaned up" or removed files
 
 ## Overview
 
@@ -17,7 +26,7 @@ If you have sections of your entity code that are tangles of if-then-else, you m
 
 Instantiate a state machine:
 
-	var sm = new StateMachine();
+	var sm = new FiniteStateMachine();
 
 Add states:
 
@@ -33,7 +42,7 @@ Call in update:
 
 	sm.update();
 
-### StateMachine
+### FiniteStateMachine
 
 #### `state`
 
