@@ -4,20 +4,19 @@ ig.module(
 .requires(
   'impact.impact'
 )
-.defines((function(global) {
-  'use strict';
+.defines(function() {
 
   var unnamedTransitionCounter = 0;
 
-  global.StateMachine = function() {
-    this.states = {};
-    this.transitions = {};
+  FiniteStateMachine = new ig.Class.extend({
+    state: {},
+    transitions = {},
     // Track states by name.
-    this.initialState = null;
-    this.currentState = null;
-    this.previousState = null;
+    initialState: null,
+    currentState: null,
+    previousState: null,
 
-    this.state = function(name, definition) {
+    state: function(name, definition) {
       if (!definition) {
         return this.states[name];
       }
@@ -25,9 +24,9 @@ ig.module(
       if (!this.initialState) {
         this.initialState = name;
       }
-    };
+    },
 
-    this.transition = function(name, fromState, toState, predicate) {
+    transition: function(name, fromState, toState, predicate) {
       if (!fromState && !toState && !predicate) {
         return this.transitions[name];
       }
@@ -53,9 +52,9 @@ ig.module(
       };
       this.transitions[name] = transition;
       return transition;
-    };
+    },
 
-    this.update = function() {
+    update: function() {
       if (!this.currentState) {
         this.currentState = this.initialState;
       }
@@ -81,7 +80,6 @@ ig.module(
           return;
         }
       }
-    };
-  };
-
-}).bind(this, this));
+    }
+  });
+});
