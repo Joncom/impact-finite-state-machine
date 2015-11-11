@@ -1,6 +1,6 @@
 /*global ig: true */
 ig.module(
-  'game.system.stateMachine'
+  'plugins.finite-state-machine'
 )
 .requires(
   'impact.impact'
