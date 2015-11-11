@@ -1,6 +1,7 @@
 ig.module('plugins.finite-state-machine')
 .requires()
 .defines(function() {
+    //FIXME: Use strict?
 
     var unnamedTransitionCounter = 0;
 
