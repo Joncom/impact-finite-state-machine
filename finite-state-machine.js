@@ -1,4 +1,3 @@
-/*global ig: true */
 ig.module(
   'plugins.finite-state-machine'
 )
