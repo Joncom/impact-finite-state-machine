@@ -7,6 +7,7 @@ ig.module('plugins.finite-state-machine')
     FiniteStateMachine = new ig.Class.extend({
         state: {},
         transitions = {},
+
         // Track states by name.
         initialState: null,
         currentState: null,
