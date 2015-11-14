@@ -3,11 +3,9 @@ ig.module('plugins.finite-state-machine')
 .defines(function() {
     //FIXME: Use strict?
 
-    var unnamedTransitionCounter = 0;
-
     FiniteStateMachine = ig.Class.extend({
         states: {},
-        transitions: {},
+        transitions: [],
 
         // Track states by name.
         initialState: null,
@@ -26,18 +24,7 @@ ig.module('plugins.finite-state-machine')
             }
         },
 
-        transition: function(name, fromState, toState, predicate) {
-            if (!fromState && !toState && !predicate) {
-                return this.transitions[name];
-            }
-            // Transitions don't require names.
-            if (!predicate) {
-                predicate = toState;
-                toState = fromState;
-                fromState = name;
-                name = 'transition-' + unnamedTransitionCounter;
-                unnamedTransitionCounter += 1;
-            }
+        transition: function(fromState, toState, predicate) {
             if (!this.states[fromState]) {
                 throw new Error('Missing from state: ' + fromState);
             }
@@ -45,12 +32,11 @@ ig.module('plugins.finite-state-machine')
                 throw new Error('Missing to state: ' + toState);
             }
             var transition = {
-                name: name,
                 fromState: fromState,
                 toState: toState,
                 predicate: predicate
             };
-            this.transitions[name] = transition;
+            this.transitions.push(transition);
             return transition;
         },
 
@@ -64,8 +50,8 @@ ig.module('plugins.finite-state-machine')
                 state.update();
             }
             // Iterate through transitions.
-            for (var name in this.transitions) {
-                var transition = this.transitions[name];
+            for(var i=0; i<this.transitions.length; i++) {
+                var transition = this.transitions[i];
                 if (transition.fromState === this.currentState &&
                     transition.predicate()) {
                     if(this.debug) {
