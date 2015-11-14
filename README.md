@@ -12,6 +12,8 @@ This is a modified version of David Hayes' [impactjs-statemachine](https://githu
 - changed the module path because I like putting these things in a `plugins` folder
 - renamed the class from `StateMachine` to `FiniteStateMachine`
 - "cleaned up" or removed files
+- added some potentially helpful debug messages (just set `.debug` equal to `true`)
+- made it so that when exiting a state, we *immediately* enter the new state, because the old way of waiting until the next frame can cause some weird issues
 
 ## Overview
 
