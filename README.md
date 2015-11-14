@@ -14,6 +14,7 @@ This is a modified version of David Hayes' [impactjs-statemachine](https://githu
 - "cleaned up" or removed files
 - added some potentially helpful debug messages (just set `.debug` equal to `true`)
 - made it so that when exiting a state, we *immediately* enter the new state, because the old way of waiting until the next frame can cause some weird issues
+- removed support for naming transitions
 
 ## Overview
 
@@ -69,10 +70,9 @@ All methods are called within the context of the state machine instance; any pro
 
 #### `transition`
 
-	transition('transitionName', 'fromStateName', 'toStateName', function() {})
-	transition('transitionName')
+	transition(fromStateName', 'toStateName', function() {})
 
-Define a transition between two states with the given name. Retrieve the named transition.
+Define a transition between two states.
 
 The transition method should return `true` if the transition should be taken. Transition checking will short-circuit if one transition returns true.
 
