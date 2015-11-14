@@ -63,7 +63,7 @@ ig.module('plugins.finite-state-machine')
                 }
                 this.previousState = this.currentState;
             }
-            if (state.update) {
+            if (state && state.update) {
                 state.update();
             }
             // Iterate through transitions.
