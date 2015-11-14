@@ -59,15 +59,7 @@ ig.module('plugins.finite-state-machine')
                 this.currentState = this.initialState;
             }
             var state = this.state(this.currentState);
-            if (this.previousState !== this.currentState) {
-                if(this.debug) {
-                    console.log('Entered state: ' + this.currentState);
-                }
-                if (state.enter) {
-                    state.enter();
-                }
-                this.previousState = this.currentState;
-            }
+            this.handleEnteringState();
             if (state && state.update) {
                 state.update();
             }
@@ -83,8 +75,22 @@ ig.module('plugins.finite-state-machine')
                         state.exit();
                     }
                     this.currentState = transition.toState;
+                    this.handleEnteringState();
                     return;
                 }
+            }
+        },
+
+        handleEnteringState: function() {
+            if (this.previousState !== this.currentState) {
+                if(this.debug) {
+                    console.log('Entered state: ' + this.currentState);
+                }
+                var state = this.state(this.currentState);
+                if (state.enter) {
+                    state.enter();
+                }
+                this.previousState = this.currentState;
             }
         }
     });
