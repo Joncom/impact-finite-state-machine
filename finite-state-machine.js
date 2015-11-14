@@ -14,6 +14,8 @@ ig.module('plugins.finite-state-machine')
         currentState: null,
         previousState: null,
 
+        debug: false,
+
         state: function(name, definition) {
             if (!definition) {
                 return this.states[name];
@@ -58,6 +60,9 @@ ig.module('plugins.finite-state-machine')
             }
             var state = this.state(this.currentState);
             if (this.previousState !== this.currentState) {
+                if(this.debug) {
+                    console.log('Entered state: ' + this.currentState);
+                }
                 if (state.enter) {
                     state.enter();
                 }
@@ -71,6 +76,9 @@ ig.module('plugins.finite-state-machine')
                 var transition = this.transitions[name];
                 if (transition.fromState === this.currentState &&
                     transition.predicate()) {
+                    if(this.debug) {
+                        console.log('Exited state: ' + this.currentState);
+                    }
                     if (state.exit) {
                         state.exit();
                     }
