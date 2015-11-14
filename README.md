@@ -80,7 +80,7 @@ The transition method should return `true` if the transition should be taken. Tr
 
 Call this every frame, possibly in an entity's `update` method.
 
-If this is a new state, then the state's `enter` function will be called. The `update` method of the state will be called next. If any of the transitions' predicates return `true` then the current state's `exit` method will be called and the new state will be `enter`ed on the next call to `update`.
+If this is a new state, then the state's `enter` function will be called. The `update` method of the state will be called next. If any of the transitions' predicates return `true` then the current state's `exit` method will be called and the new state will be `enter`ed.
 
 ## License
 
