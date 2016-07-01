@@ -1,9 +1,9 @@
-ig.module('plugins.finite-state-machine')
+ig.module('plugins.state-machine')
 .requires()
 .defines(function() {
     //FIXME: Use strict?
 
-    FiniteStateMachine = ig.Class.extend({
+    StateMachine = ig.Class.extend({
         states: {},
         transitions: [],
 
